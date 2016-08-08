@@ -18,7 +18,7 @@ INS_FOLDER="$ROOT_FOLDER/install"
 [ -d ${ROOT_FOLDER} ] || { echo "wbin folder does not exist!"; exit 1; }
 [ -d ${INS_FOLDER} ] || { echo "wbin/install folder does not exist!"; exit 1; }
 
-echo "Starting DFIRFPI tools installation" > ${LOG}
+echo "Starting DFIRFPI tools installation [manual]" > ${LOG}
 
 #-------------------------------------------------------------------
 
@@ -46,9 +46,25 @@ sudo dnf -y install python python-pip python-setuptools >> ${LOG} 2>&1
 sudo dnf -y install python3 python3-pip python3-setuptools >> ${LOG} 2>&1
 sudo dnf -y install openssl-libs openssl fuse fuse-python >> ${LOG} 2>&1
 
+# SleuthKit section
 sudo dnf -y install afflib afftools >> ${LOG} 2>&1
+EWF_VER="20160424-1"
+wget -Nnv "https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/fc23/x86_64/libewf-${EWF_VER}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+if [[ $? != 0 ]]; then echo "unable to download libewf libraries"; exit 1; fi
+wget -Nnv "https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/fc23/x86_64/libewf-tools-${EWF_VER}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+if [[ $? != 0 ]]; then echo "unable to download libewf libraries"; exit 1; fi
+wget -Nnv "https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/fc23/x86_64/libewf-python-${EWF_VER}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+if [[ $? != 0 ]]; then echo "unable to download libewf libraries"; exit 1; fi
+wget -Nnv "https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/fc23/x86_64/libewf-python3-${EWF_VER}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+if [[ $? != 0 ]]; then echo "unable to download libewf libraries"; exit 1; fi
+sudo dnf -y install ${ARC_FOLDER}/libewf-*.rpm >> ${LOG} 2>&1
 
-sudo dnf -y install libewf libewf-python ewftools >> ${LOG} 2>&1
+TSK_VER="4.3.0-1"
+wget -Nnv "https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/fc23/x86_64/sleuthkit-${TSK_VER}.fc23.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+if [[ $? != 0 ]]; then echo "unable to download sleuthkit"; exit 1; fi
+sudo dnf -y install ${ARC_FOLDER}/sleuthkit-*.rpm >> ${LOG} 2>&1
+
+exit
 
 sudo dnf -y install sleuthkit sleuthkit-libs >> ${LOG} 2>&1
 
