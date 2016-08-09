@@ -29,11 +29,13 @@ WIN_FOLDER="$ROOT_FOLDER/win"
 [ -d ${ARC_FOLDER} ] || mkdir ${ARC_FOLDER}
 [ -d ${WIN_FOLDER} ] || mkdir ${WIN_FOLDER}
 
+NTF_FOLDER="$WIN_FOLDER/ntfs"
 REG_FOLDER="$WIN_FOLDER/registry"
 SHB_FOLDER="$WIN_FOLDER/shellbags"
 USB_FOLDER="$WIN_FOLDER/usb"
 
 # 1st level Windows folder
+[ -d ${NTF_FOLDER} ] || mkdir ${NTF_FOLDER}
 [ -d ${REG_FOLDER} ] || mkdir ${REG_FOLDER}
 [ -d ${SHB_FOLDER} ] || mkdir ${SHB_FOLDER}
 [ -d ${USB_FOLDER} ] || mkdir ${USB_FOLDER}
@@ -46,7 +48,7 @@ sudo dnf -y install python python-pip python-setuptools >> ${LOG} 2>&1
 sudo dnf -y install python3 python3-pip python3-setuptools >> ${LOG} 2>&1
 sudo dnf -y install openssl-libs openssl fuse fuse-python >> ${LOG} 2>&1
 
-# SleuthKit section
+# SleuthKit section -----------------------------
 sudo dnf -y install afflib afftools >> ${LOG} 2>&1
 EWF_VER="20160424-1"
 wget -Nnv "https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/fc23/x86_64/libewf-${EWF_VER}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
@@ -64,12 +66,19 @@ wget -Nnv "https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/fc23/x86_64/sle
 if [[ $? != 0 ]]; then echo "unable to download sleuthkit"; exit 1; fi
 sudo dnf -y install ${ARC_FOLDER}/sleuthkit-*.rpm >> ${LOG} 2>&1
 
+# Plaso section ---------------------------------
+
+sudo dnf -y install artifacts bencode binplist  >> ${LOG} 2>&1
+
+
+# NTFS section ----------------------------------
+
+sudo pip install analyzeMFT  >> ${LOG} 2>&1
+
 exit
 
-sudo dnf -y install sleuthkit sleuthkit-libs >> ${LOG} 2>&1
+# RE section ------------------------------------
 
-#sudo dnf -y install anayzeMFT artifacts >> ${LOG} 2>&1
-#sudo dnf -y install bencode binplist >> ${LOG} 2>&1
 #sudo dnf -y install cryptcat >> ${LOG} 2>&1
 #sudo dnf -y install DropboxReader >> ${LOG} 2>&1
 #sudo dnf -y install dc3dd dd_rescue ddrescue ddrescueview >> ${LOG} 2>&1
