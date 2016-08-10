@@ -29,13 +29,13 @@ WIN_FOLDER="$ROOT_FOLDER/win"
 [ -d ${ARC_FOLDER} ] || mkdir ${ARC_FOLDER}
 [ -d ${WIN_FOLDER} ] || mkdir ${WIN_FOLDER}
 
-NTF_FOLDER="$WIN_FOLDER/ntfs"
+NTFS_FOLDER="$WIN_FOLDER/ntfs"
 REG_FOLDER="$WIN_FOLDER/registry"
 SHB_FOLDER="$WIN_FOLDER/shellbags"
 USB_FOLDER="$WIN_FOLDER/usb"
 
 # 1st level Windows folder
-[ -d ${NTF_FOLDER} ] || mkdir ${NTF_FOLDER}
+[ -d ${NTFS_FOLDER} ] || mkdir ${NTFS_FOLDER}
 [ -d ${REG_FOLDER} ] || mkdir ${REG_FOLDER}
 [ -d ${SHB_FOLDER} ] || mkdir ${SHB_FOLDER}
 [ -d ${USB_FOLDER} ] || mkdir ${USB_FOLDER}
@@ -74,14 +74,16 @@ sudo dnf -y install artifacts bencode binplist  >> ${LOG} 2>&1
 # NTFS section ----------------------------------
 
 sudo pip install analyzeMFT  >> ${LOG} 2>&1
+[ -L ${NTFS_FOLDER}/analyzeMFT.py ] || ln -s /usr/bin/analyzeMFT.py ${NTFS_FOLDER}/analyzeMFT.py
 
 exit
 
 # RE section ------------------------------------
 
-#sudo dnf -y install cryptcat >> ${LOG} 2>&1
-#sudo dnf -y install DropboxReader >> ${LOG} 2>&1
-#sudo dnf -y install dc3dd dd_rescue ddrescue ddrescueview >> ${LOG} 2>&1
+# MISC section ----------------------------------
+
+sudo dnf -y install dc3dd dd_rescue ddrescue >> ${LOG} 2>&1
+
 #sudo dnf -y install ddrutility dfvfs dff dfwinreg distorm3 >> ${LOG} 2>&1
 #sudo dnf -y install eindeutig epub >> ${LOG} 2>&1
 #sudo dnf -y install fatback fcrackzip ffmpeg-libs >> ${LOG} 2>&1
