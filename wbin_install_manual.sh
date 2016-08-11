@@ -70,6 +70,8 @@ sudo dnf -y install python python-pip python-setuptools >> ${LOG} 2>&1
 sudo dnf -y install python3 python3-pip python3-setuptools >> ${LOG} 2>&1
 sudo dnf -y install openssl-libs openssl fuse fuse-python >> ${LOG} 2>&1
 
+sudo pip install --upgrade pip >> ${LOG} 2>&1
+
 # SleuthKit section -----------------------------
 sudo dnf -y install afflib afftools >> ${LOG} 2>&1
 
@@ -157,11 +159,18 @@ sudo pip install analyzeMFT  >> ${LOG} 2>&1
 
 # MISC section ----------------------------------
 
-sudo dnf -y install nano scite testdisk xmount >> ${LOG} 2>&1
+sudo dnf -y install nano scite testdisk >> ${LOG} 2>&1
 sudo dnf -y install dc3dd dd_rescue ddrescue ssdeep >> ${LOG} 2>&1
-sudo dnf -y pycryptopp libpst >> ${LOG} 2>&1
+sudo dnf -y install pycryptopp libpst fuse-encfs >> ${LOG} 2>&1
 
 sudo pip install pycrypto >> ${LOG} 2>&1
+
+NAME="xmount"
+VERSION="0.7.4-1"
+SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
+wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.${TUXREL}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.${TUXREL}.x86_64.rpm >> ${LOG} 2>&1
+
 
 #-------------------------------------------------------------------
 
@@ -180,3 +189,5 @@ ${INS_FOLDER}/install_usbdeviceforensics.sh
 # usn
 #sudo dnf -y install radare radare-extras python-radare bokken >> ${LOG} 2>&1
 # snort
+# hc tools
+# wb tools
