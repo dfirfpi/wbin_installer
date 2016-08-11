@@ -150,87 +150,33 @@ SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
 wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
 sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
 
-exit
-
 # NTFS section ----------------------------------
 
 sudo pip install analyzeMFT  >> ${LOG} 2>&1
 [ -L ${NTFS_FOLDER}/analyzeMFT.py ] || ln -s /usr/bin/analyzeMFT.py ${NTFS_FOLDER}/analyzeMFT.py
 
-# RE section ------------------------------------
-
 # MISC section ----------------------------------
 
-sudo dnf -y install dc3dd dd_rescue ddrescue >> ${LOG} 2>&1
+sudo dnf -y install nano scite testdisk xmount >> ${LOG} 2>&1
+sudo dnf -y install dc3dd dd_rescue ddrescue ssdeep >> ${LOG} 2>&1
+sudo dnf -y pycryptopp libpst >> ${LOG} 2>&1
 
-#sudo dnf -y install ddrutility dfvfs dff dfwinreg distorm3 >> ${LOG} 2>&1
-#sudo dnf -y install eindeutig epub >> ${LOG} 2>&1
-#sudo dnf -y install fatback fcrackzip ffmpeg-libs >> ${LOG} 2>&1
-#sudo dnf -y install frag_find frag_find-tools fundl >> ${LOG} 2>&1
-#sudo dnf -y install ghostpdl guymager >> ${LOG} 2>&1
-#sudo dnf -y install hachoir-core hachoir-metadata hachoir-parser hachoir-wx >> ${LOG} 2>&1
-#sudo dnf -y install kracked >> ${LOG} 2>&1
-#sudo dnf -y install libavdevice >> ${LOG} 2>&1
-#sudo dnf -y install libbde libbde-python libbde-tools >> ${LOG} 2>&1
-#sudo dnf -y install libbfio >> ${LOG} 2>&1
-#sudo dnf -y install libesedb libesedb-python libesedb-tools >> ${LOG} 2>&1
-#sudo dnf -y install libevt libevt-python libevt-tools >> ${LOG} 2>&1
-#sudo dnf -y install libevtx libevtx-python libevtx-tools >> ${LOG} 2>&1
-#sudo dnf -y install libfsntfs libfsntfs-python libfsntfs-tools >> ${LOG} 2>&1
-#sudo dnf -y install libfvde libfvde-tools >> ${LOG} 2>&1
-#sudo dnf -y install libfwnt libfwnt-python libfwnt-python3 >> ${LOG} 2>&1
-#sudo dnf -y install libfwsi libfwsi-python >> ${LOG} 2>&1
-#sudo dnf -y install libiconv libiconv-utils >> ${LOG} 2>&1
-#sudo dnf -y install liblnk liblnk-python liblnk-tools >> ${LOG} 2>&1
-#sudo dnf -y install libluksde libluksde-python libluksde-tools >> ${LOG} 2>&1
-#sudo dnf -y install libmsiecf libmsiecf-python libmsiecf-tools >> ${LOG} 2>&1
-#sudo dnf -y install libolecf libolecf-python libolecf-tools >> ${LOG} 2>&1
-#sudo dnf -y install libpff libpff-python libpff-tools >> ${LOG} 2>&1
-#sudo dnf -y install libpst libpst-libs libpst-python >> ${LOG} 2>&1
-#sudo dnf -y install libqcow libqcow-python libqcow-tools >> ${LOG} 2>&1
-#sudo dnf -y install libregf libregf-python libregf-tools >> ${LOG} 2>&1
-#sudo dnf -y install libscca libscca-python libscca-python3 libscca-tools >> ${LOG} 2>&1
-#sudo dnf -y install libsigscan libsigscan-python libsigscan-python3 libsigscan-tools >> ${LOG} 2>&1
-#sudo dnf -y install libsmdev libsmdev-python libsmdev-python3 libsmdev-tools >> ${LOG} 2>&1
-#sudo dnf -y install libsmraw libsmraw-python libsmraw-tools >> ${LOG} 2>&1
-#sudo dnf -y install libunrar >> ${LOG} 2>&1
-#sudo dnf -y install libvhdi libvhdi-python libvhdi-tools >> ${LOG} 2>&1
-#sudo dnf -y install libvmdk libvmdk-python libvmdk-tools >> ${LOG} 2>&1
-#sudo dnf -y install libvshadow libvshadow-python libvshadow-tools >> ${LOG} 2>&1
-#sudo dnf -y install libvslvm libvslvm-python libvslvm-python3 libvslvm-tools >> ${LOG} 2>&1
-#sudo dnf -y install libsmdev libsmdev-python libsmdev-python3 libsmdev-tools >> ${LOG} 2>&1
-#sudo dnf -y install log2timeline >> ${LOG} 2>&1
-#sudo dnf -y install md5deep md5 missidentify mount_ewf >> ${LOG} 2>&1
-#sudo dnf -y install nDPI netsa-python netsa-rayon netsa_silk null-package >> ${LOG} 2>&1
-#sudo dnf -y install partclone perl-File-Mork perl-Max-PropertyList >> ${LOG} 2>&1
-#sudo dnf -y install perl-Parse-Evtx perl-Parse-Evtx-tools perl-Parse-Win32Registry >> ${LOG} 2>&1
-#sudo dnf -y install prism pstotext pyew python-binplist python-construct >> ${LOG} 2>&1
-#sudo dnf -y install python-dfdatetime python-rarfile python-registry pytsk >> ${LOG} 2>&1
-#sudo dnf -y install rar reglookup rifiuti rifiuti2 >> ${LOG} 2>&1
-#sudo dnf -y install scrounge-ntfs sfdumper ssdeep stegdetect >> ${LOG} 2>&1
-#sudo dnf -y install snort snort-sample-rules >> ${LOG} 2>&1
-#sudo dnf -y install testdisk >> ${LOG} 2>&1
-#sudo dnf -y install undbx unrar untex >> ${LOG} 2>&1
-#sudo dnf -y install videosnarf >> ${LOG} 2>&1
-#sudo dnf -y install xslxwriter xmount xplico >> ${LOG} 2>&1
-#sudo dnf -y install yaf yara yara-python >> ${LOG} 2>&1
-
-#sudo dnf -y install plaso >> ${LOG} 2>&1
-#sudo dnf -y install radare radare-extras python-radare bokken >> ${LOG} 2>&1
+sudo pip install pycrypto >> ${LOG} 2>&1
 
 #-------------------------------------------------------------------
-# Special, up to date versions
-
-# TODO
-# plaso HEAD version install ${INS_FOLDER}/install_plaso.sh
-# autopsy (latest)
-# bulk-extractor
-# shellbags
-# usn
-# volatility + rekall
-# willy...
 
 ${INS_FOLDER}/install_regripper.sh
 ${INS_FOLDER}/install_usbdeviceforensics.sh
 
 #-------------------------------------------------------------------
+# TODO
+
+# PyAFF4
+# rekall
+# volatility
+# autopsy (latest)
+# bulk-extractor
+# shellbags
+# usn
+#sudo dnf -y install radare radare-extras python-radare bokken >> ${LOG} 2>&1
+# snort
