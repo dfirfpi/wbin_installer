@@ -94,7 +94,6 @@ sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
 sudo dnf install -y python-dateutil python3-dateutil python-dpkt >> ${LOG} 2>&1
 sudo dnf install -y python-ipython python3-ipython >> ${LOG} 2>&1
 sudo dnf install -y pyparsing python-pefile python-psutil python3-psutil >> ${LOG} 2>&1
-sudo dnf install -y yara yara-python >> ${LOG} 2>&1
 
 sudo pip install artifacts bencode binplist construct dfdatetime >> ${LOG} 2>&1
 sudo pip install hachoir_core hachoir_metadata hachoir_parser >> ${LOG} 2>&1
@@ -134,11 +133,12 @@ wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.noarch.rpm" -P ${ARC_FOLDER} >> ${LOG
 if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${NAME} ${VERSION}"; exit; fi
 sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
 
-NAME="libyara"
-VERSION="3.5.0-1"
-SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
-wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
-sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
+# 20160829 - libyara not needed
+#NAME="libyara"
+#VERSION="3.5.0-1"
+#SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
+#wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+#sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
 
 NAME="yara"
 VERSION="3.5.0-1"
