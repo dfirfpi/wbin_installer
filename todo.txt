@@ -1,0 +1,4 @@
+1) Error: nothing provides python-dfdatetime needed by python3-dfwinreg-20160428-1.noarch
+
+2) testdisk need libewf.so.2 specifically, need to recompile it
+

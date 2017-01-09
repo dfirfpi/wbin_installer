@@ -69,9 +69,11 @@ sudo dnf -y install perl-CPAN >> ${LOG} 2>&1
 sudo dnf -y install python python-pip python-setuptools >> ${LOG} 2>&1
 sudo dnf -y install python3 python3-pip python3-setuptools >> ${LOG} 2>&1
 sudo dnf -y install openssl-libs openssl fuse fuse-python >> ${LOG} 2>&1
-sudo dnf -y install yara yara-python >> ${LOG} 2>&1
+sudo dnf -y install yara python2-yara python3-yara >> ${LOG} 2>&1
+sudo dnf -y reinstall python3-pip >> ${LOG} 2>&1
 
 sudo pip install --upgrade pip >> ${LOG} 2>&1
+sudo pip3 install --upgrade pip >> ${LOG} 2>&1
 
 # SleuthKit section -----------------------------
 sudo dnf -y install afflib afftools >> ${LOG} 2>&1
@@ -106,6 +108,10 @@ sudo dnf install -y pyparsing python-pefile python-psutil python3-psutil >> ${LO
 sudo pip install artifacts bencode binplist construct dfdatetime >> ${LOG} 2>&1
 sudo pip install hachoir_core hachoir_metadata hachoir_parser >> ${LOG} 2>&1
 sudo pip install efilter xlsxwriter >> ${LOG} 2>&1
+
+sudo pip3 install artifacts bencode binplist construct dfdatetime >> ${LOG} 2>&1
+sudo pip3 install hachoir_core hachoir_metadata hachoir_parser >> ${LOG} 2>&1
+sudo pip3 install efilter xlsxwriter >> ${LOG} 2>&1
 
 install_libyal "libbde"     "20160731-1"
 install_libyal "libesedb"   "20160622-1"
@@ -168,6 +174,7 @@ sudo dnf -y install dc3dd dd_rescue ddrescue ssdeep >> ${LOG} 2>&1
 sudo dnf -y install pycryptopp libpst fuse-encfs >> ${LOG} 2>&1
 
 sudo pip install pycrypto >> ${LOG} 2>&1
+sudo pip3 install pycrypto >> ${LOG} 2>&1
 
 NAME="xmount"
 VERSION="pre0.7.5-1"
