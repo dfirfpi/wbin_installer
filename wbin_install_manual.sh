@@ -83,7 +83,14 @@ wget -nv -nc "https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x8
 if [[ $? != 0 ]]; then echo "unable to download sleuthkit"; exit 1; fi
 sudo dnf -y install ${ARC_FOLDER}/sleuthkit-*.rpm >> ${LOG} 2>&1
 
-NAME="pytsk3-python"
+NAME="python-pytsk3"
+VERSION="20161109-1"
+SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
+wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${NAME} ${VERSION}"; exit; fi
+sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
+
+NAME="python3-pytsk3"
 VERSION="20161109-1"
 SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
 wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
