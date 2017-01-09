@@ -11,7 +11,7 @@
 #
 #-------------------------------------------------------------------
 
-TUXREL="fc23"
+TUXREL="fc24"
 LOG="wbin_install.log"
 ROOT_FOLDER="/wbin"
 INS_FOLDER="$ROOT_FOLDER/install"
@@ -69,6 +69,7 @@ sudo dnf -y install perl-CPAN >> ${LOG} 2>&1
 sudo dnf -y install python python-pip python-setuptools >> ${LOG} 2>&1
 sudo dnf -y install python3 python3-pip python3-setuptools >> ${LOG} 2>&1
 sudo dnf -y install openssl-libs openssl fuse fuse-python >> ${LOG} 2>&1
+sudo dnf -y install yara yara-python >> ${LOG} 2>&1
 
 sudo pip install --upgrade pip >> ${LOG} 2>&1
 
@@ -77,13 +78,13 @@ sudo dnf -y install afflib afftools >> ${LOG} 2>&1
 
 install_libyal "libewf" "20160424-1"
 
-TSK_VER="4.3.0-1"
-wget -nv -nc "https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/fc23/x86_64/sleuthkit-${TSK_VER}.fc23.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+TSK_VER="4.3.1-1"
+wget -nv -nc "https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64/sleuthkit-${TSK_VER}.${TUXREL}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
 if [[ $? != 0 ]]; then echo "unable to download sleuthkit"; exit 1; fi
 sudo dnf -y install ${ARC_FOLDER}/sleuthkit-*.rpm >> ${LOG} 2>&1
 
 NAME="pytsk3-python"
-VERSION="20160721-1"
+VERSION="20161109-1"
 SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
 wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
 if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${NAME} ${VERSION}"; exit; fi
@@ -104,20 +105,21 @@ install_libyal "libesedb"   "20160622-1"
 install_libyal "libevt"     "20160421-1"
 install_libyal "libevtx"    "20160421-1"
 install_libyal "libfsntfs"  "20160418-1"
-install_libyal "libfvde"    "20160801-1"
+install_libyal "libfvde"    "20160918-1"
 install_libyal "libfwsi"    "20160110-1"
 install_libyal "liblnk"     "20160420-1"
-install_libyal "libmsiecf"  "20160421-1"
-install_libyal "libolecf"   "20160423-1"
+install_libyal "libmsiecf"  "20160904-1"
+install_libyal "libolecf"   "20161113-1"
 install_libyal "libqcow"    "20160123-1"
 install_libyal "libregf"    "20160424-1"
-install_libyal "libscca"    "20160108-1"
+install_libyal "libscca"    "20170105-1"
 install_libyal "libsigscan" "20160312-1"
 install_libyal "libsmdev"   "20160320-1"
 install_libyal "libsmraw"   "20160424-1"
 install_libyal "libvhdi"    "20160424-1"
 install_libyal "libvmdk"    "20160119-1"
-install_libyal "libvshadow" "20160110-1"
+install_libyal "libvshadow" "20161111-1"
+install_libyal "libvslvm"   "20160110-1"
 
 NAME="python-dfwinreg"
 VERSION="20160428-1"
@@ -126,30 +128,25 @@ wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.noarch.rpm" -P ${ARC_FOLDER} >> ${LOG
 if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${NAME} ${VERSION}"; exit; fi
 sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}*.rpm >> ${LOG} 2>&1
 
+NAME="python3-dfwinreg"
+VERSION="20160428-1"
+SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
+wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.noarch.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${NAME} ${VERSION}"; exit; fi
+sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}*.rpm >> ${LOG} 2>&1
+
 NAME="python-dfvfs"
-VERSION="20160803-1"
+VERSION="20160918-1"
 SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
 wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.noarch.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
 if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${NAME} ${VERSION}"; exit; fi
 sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
 
-# 20160829 - libyara not needed
-#NAME="libyara"
-#VERSION="3.5.0-1"
-#SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
-#wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
-#sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
-
-NAME="yara"
-VERSION="3.5.0-1"
+NAME="python3-dfvfs"
+VERSION="20160918-1"
 SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
-wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
-sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
-
-NAME="yara-python"
-VERSION="3.5.0-1"
-SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
-wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.noarch.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
+if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${NAME} ${VERSION}"; exit; fi
 sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
 
 # NTFS section ----------------------------------
@@ -166,7 +163,7 @@ sudo dnf -y install pycryptopp libpst fuse-encfs >> ${LOG} 2>&1
 sudo pip install pycrypto >> ${LOG} 2>&1
 
 NAME="xmount"
-VERSION="0.7.4-1"
+VERSION="pre0.7.5-1"
 SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
 wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.${TUXREL}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
 sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.${TUXREL}.x86_64.rpm >> ${LOG} 2>&1
