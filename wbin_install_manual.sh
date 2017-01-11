@@ -105,7 +105,7 @@ sudo dnf install -y python-dateutil python3-dateutil python-dpkt >> ${LOG} 2>&1
 sudo dnf install -y python-ipython python3-ipython >> ${LOG} 2>&1
 sudo dnf install -y pyparsing python-pefile python-psutil python3-psutil >> ${LOG} 2>&1
 
-sudo pip install artifacts bencode binplist construct dfdatetime >> ${LOG} 2>&1
+sudo pip install artifacts bencode binplist construct==2.5.2 dfdatetime >> ${LOG} 2>&1
 sudo pip install hachoir_core hachoir_metadata hachoir_parser >> ${LOG} 2>&1
 sudo pip install efilter xlsxwriter >> ${LOG} 2>&1
 
