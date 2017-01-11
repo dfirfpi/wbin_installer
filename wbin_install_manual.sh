@@ -38,7 +38,7 @@ function install_libyal {
     if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${LIB_NAME} ${LIB_VERSION} tools"; fi
     wget -nv -nc "${SOURCE}/${LIB_NAME}-python-${LIB_VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
     if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${LIB_NAME} ${LIB_VERSION} python2"; fi
-    wget -nv -nc "${SOURCE}/${LIB_NAME}-python3-${LIB_VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>$
+    wget -nv -nc "${SOURCE}/${LIB_NAME}-python3-${LIB_VERSION}.x86_64.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
     if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${LIB_NAME} ${LIB_VERSION} python3 libs"; fi
     sudo dnf -y install ${ARC_FOLDER}/${LIB_NAME}-*.rpm >> ${LOG} 2>&1
 }
@@ -119,6 +119,7 @@ install_libyal "libevt"     "20160421-1"
 install_libyal "libevtx"    "20160421-1"
 install_libyal "libfsntfs"  "20160418-1"
 install_libyal "libfvde"    "20160918-1"
+install_libyal "libfwnt"    "20161103-1"
 install_libyal "libfwsi"    "20160110-1"
 install_libyal "liblnk"     "20160420-1"
 install_libyal "libmsiecf"  "20160904-1"
