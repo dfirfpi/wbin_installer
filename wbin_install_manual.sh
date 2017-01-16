@@ -140,28 +140,14 @@ VERSION="20160428-1"
 SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
 wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.noarch.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
 if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${NAME} ${VERSION}"; exit; fi
-sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}*.rpm >> ${LOG} 2>&1
-
-NAME="python3-dfwinreg"
-VERSION="20160428-1"
-SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
-wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.noarch.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
-if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${NAME} ${VERSION}"; exit; fi
-sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}*.rpm >> ${LOG} 2>&1
+sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.noarch.rpm >> ${LOG} 2>&1
 
 NAME="python-dfvfs"
 VERSION="20160918-1"
 SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
 wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.noarch.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
 if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${NAME} ${VERSION}"; exit; fi
-sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
-
-NAME="python3-dfvfs"
-VERSION="20160918-1"
-SOURCE="https://github.com/dfirfpi/rpm_bin_dfirfpi/raw/master/${TUXREL}/x86_64"
-wget -nv -nc "${SOURCE}/${NAME}-${VERSION}.noarch.rpm" -P ${ARC_FOLDER} >> ${LOG} 2>&1
-if [[ $? != 0 ]]; then echo "[ERROR] unable to download ${NAME} ${VERSION}"; exit; fi
-sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.x86_64.rpm >> ${LOG} 2>&1
+sudo dnf -y install ${ARC_FOLDER}/${NAME}-${VERSION}.noarch.rpm >> ${LOG} 2>&1
 
 # NTFS section ----------------------------------
 
