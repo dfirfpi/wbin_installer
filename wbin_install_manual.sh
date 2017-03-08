@@ -116,7 +116,7 @@ sudo pip3 install efilter xlsxwriter >> ${LOG} 2>&1
 install_libyal "libbde"     "20160731-1"
 install_libyal "libesedb"   "20160622-1"
 install_libyal "libevt"     "20160421-1"
-install_libyal "libevtx"    "20160421-1"
+install_libyal "libevtx"    "20170122-1"
 install_libyal "libfsntfs"  "20160418-1"
 install_libyal "libfvde"    "20160918-1"
 install_libyal "libfwnt"    "20161103-1"
